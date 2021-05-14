@@ -5,6 +5,8 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - run: echo ${{ inputs.version }}
+      shell: bash
     - run: |
         if [ ${{ inputs.version }} = "latest" ]; then
           FILENAME=$(curl -sS https://api.github.com/repos/kayac/ecspresso/releases/latest|jq -r '.assets[].name|select(test("linux-amd64.zip"))')

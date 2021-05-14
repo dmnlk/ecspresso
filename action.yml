@@ -7,7 +7,7 @@ runs:
   steps:
     - run: |
         if [ ${{ inputs.version }} = "latest" ]; then
-          FILENAME=$(curl -s https://api.github.com/repos/kayac/ecspresso/releases/latest|jq -r '.assets[].browser_download_url|select(test("linux-amd64.zip"))')
+          FILENAME=$(curl -sS https://api.github.com/repos/kayac/ecspresso/releases/latest|jq -r '.assets[].name|select(test("linux-amd64.zip"))')
         else
           FILENAME=ecspresso-${{ inputs.version }}-linux-amd64
         fi
